@@ -11,6 +11,7 @@ const instance = axios.create({
   // #endif
   // #ifndef H5
   // @ts-ignore
+
   baseURL: 'https://service-rbji0bev-1256505457.cd.apigw.tencentcs.com/release',
   // #endif
   adapter(config) {
