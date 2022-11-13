@@ -26,6 +26,10 @@ const pages = reactive([
   {
     title: 'uView Demo',
     url: '/pages/uview/index'
+  },
+  {
+    title: '测试分包',
+    url: '/testSub/index/index'
   }
 ])
 </script>
