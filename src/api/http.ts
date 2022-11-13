@@ -2,27 +2,29 @@ import axios from 'axios'
 
 import { getFullURL } from '@/utils/http'
 
-let host
-
-const { envVersion } = uni.getAccountInfoSync().miniProgram
-console.log(envVersion)
-if (envVersion === 'release') {
-  host = 'https://xxxx.com2222'
-} else {
-  host = 'http://xxxx.com11111'
+function getWXHost(): string {
+  // //envVersion: 'develop',    //开发版
+  // //envVersion: 'trial',          //体验版
+  // //envVersion: 'release',     //正式版
+  const { envVersion } = uni.getAccountInfoSync().miniProgram
+  console.log(envVersion)
+  if (envVersion === 'release') {
+    return 'https://xxxx.com2222'
+  }
+  return 'http://xxxx.com11111'
 }
-
-//
-// //envVersion: 'develop',    //开发版
-// //envVersion: 'trial',          //体验版
-// //envVersion: 'release',     //正式版
 
 const instance = axios.create({
   // Web 侧可以通过 vite.config.js 中的 proxy 配置，指定代理
   // 小程序APP里需写完整路径，如 https://service-rbji0bev-1256505457.cd.apigw.tencentcs.com/release
   // 可使用条件编译,详见 https://uniapp.dcloud.io/tutorial/platform.html#preprocessor
   // #ifdef H5
-  baseURL: host,
+  baseURL: 'https://service-rbji0bev-1256505457.cd.apigw.tencentcs.com/release',
+  // #endif
+
+  // #ifdef MP-WEIXIN
+  // @ts-ignore
+  baseURL: getWXHost(),
   // #endif
   // #ifndef H5
   // @ts-ignore
