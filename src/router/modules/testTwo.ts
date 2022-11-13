@@ -1,4 +1,6 @@
-const testTwo = [
+import { Routers } from '@/router/symbol'
+
+const testTwo: Array<Routers> = [
   {
     name: 'subPackages',
     path: 'testSub',
@@ -12,5 +14,4 @@ const testTwo = [
     ]
   }
 ]
-
-module.exports = testTwo
+export default testTwo

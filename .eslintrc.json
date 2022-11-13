@@ -38,6 +38,7 @@
     "max-len": "warn",
     "no-restricted-syntax": "off",
     "no-bitwise": "off",
+    "no-unused-expressions": "off",
     "camelcase": "off",
     "no-case-declarations": "off",
     "@typescript-eslint/no-namespace": "off",

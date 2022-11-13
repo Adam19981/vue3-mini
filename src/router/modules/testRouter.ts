@@ -1,4 +1,6 @@
-const testRouter = [
+import { Routers } from '@/router/symbol'
+
+const testRouter: Array<Routers> = [
   {
     name: 'pages',
     path: 'pages',
@@ -31,4 +33,4 @@ const testRouter = [
   }
 ]
 
-module.exports = testRouter
+export default testRouter
