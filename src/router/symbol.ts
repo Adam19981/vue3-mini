@@ -1,12 +1,12 @@
-export interface Router {
+export interface RouterChildren {
   path: string
   meta: Record<string, any>
 }
 
-export interface Routers {
+export interface Router {
   name: 'pages' | 'subPackages'
   path: string
-  children?: Array<Router>
+  children?: Array<RouterChildren>
 }
 
 export interface Page {

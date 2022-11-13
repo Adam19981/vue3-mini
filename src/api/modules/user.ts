@@ -18,6 +18,7 @@ function getCode(phone: string): Promise<{ num: number }> {
     }
   })
 }
+
 export default {
   login,
   getCode

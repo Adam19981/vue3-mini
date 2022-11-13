@@ -1,5 +1,11 @@
 import * as fs from 'fs'
-import { Routers, Router, Page, SubPackage, PageJson } from '@/router/symbol'
+import {
+  Router,
+  RouterChildren,
+  Page,
+  SubPackage,
+  PageJson
+} from '@/router/symbol'
 import router from './index'
 
 const pageJson: PageJson = {
@@ -17,9 +23,9 @@ const pageJson: PageJson = {
     }
   }
 }
-function createPages(children: Router[]): Page[] {
+function createPages(children: RouterChildren[]): Page[] {
   const pages: Page[] = []
-  children.forEach((item: Router) => {
+  children.forEach((item: RouterChildren) => {
     const page: Page = {
       path: `pages/${item.path}`,
       style: {
@@ -31,12 +37,12 @@ function createPages(children: Router[]): Page[] {
   return pages
 }
 
-function createSubPages(router: Routers): SubPackage {
+function createSubPages(router: Router): SubPackage {
   const subPackages: SubPackage = {
     root: router.path,
     pages: []
   }
-  router.children?.forEach((item: Router) => {
+  router.children?.forEach((item: RouterChildren) => {
     const subPackage: Page = {
       path: item.path,
       style: {
@@ -48,7 +54,7 @@ function createSubPages(router: Routers): SubPackage {
   return subPackages
 }
 
-router.forEach((item: Routers) => {
+router.forEach((item: Router) => {
   if (item.children && item.children.length) {
     if (item.name === 'pages') {
       pageJson.pages = pageJson.pages.concat(createPages(item.children))
@@ -58,16 +64,20 @@ router.forEach((item: Routers) => {
   }
 })
 
-fs.rename('src/pages.json', 'src/pages.json.back', (err: any) => {
-  if (err) {
-    console.log(err)
-  } else {
-    fs.writeFile(
-      'src/pages.json',
-      JSON.stringify(pageJson, null, '\t'),
-      (err: any) => {
-        err ? console.error(err) : console.log('pages.json文件更新成功!')
-      }
-    )
+fs.rename(
+  'src/pages.json',
+  'src/pages.json.back',
+  (err: NodeJS.ErrnoException | null) => {
+    if (err) {
+      console.log(err)
+    } else {
+      fs.writeFile(
+        'src/pages.json',
+        JSON.stringify(pageJson, null, '\t'),
+        (err: NodeJS.ErrnoException | null) => {
+          err ? console.error(err) : console.log('pages.json文件更新成功!')
+        }
+      )
+    }
   }
-})
+)

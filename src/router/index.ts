@@ -1,6 +1,6 @@
-import moduleRouter from './modules/testRouter'
-import moduleRouterTwo from './modules/testTwo'
+import { router as RouterOne } from './modules/testRouter'
+import { router as moduleRouterTwo } from './modules/testTwo'
 
-const router = [...moduleRouter, ...moduleRouterTwo]
+const router = [...RouterOne, ...moduleRouterTwo]
 
 export default router

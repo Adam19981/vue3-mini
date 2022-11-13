@@ -1,6 +1,6 @@
-import { Routers } from '@/router/symbol'
+import { Router } from '@/router/symbol'
 
-const testRouter: Array<Routers> = [
+export const router: Array<Router> = [
   {
     name: 'pages',
     path: 'pages',
@@ -32,5 +32,3 @@ const testRouter: Array<Routers> = [
     ]
   }
 ]
-
-export default testRouter

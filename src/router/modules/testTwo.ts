@@ -1,6 +1,6 @@
-import { Routers } from '@/router/symbol'
+import { Router } from '@/router/symbol'
 
-const testTwo: Array<Routers> = [
+export const router: Array<Router> = [
   {
     name: 'subPackages',
     path: 'testSub',
@@ -14,4 +14,3 @@ const testTwo: Array<Routers> = [
     ]
   }
 ]
-export default testTwo
