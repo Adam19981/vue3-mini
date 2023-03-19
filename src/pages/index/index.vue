@@ -10,7 +10,7 @@ const clipHeight = ref<number>(0)
 
 const props = defineProps({
   hasNavBar: Boolean,
-  hasTabBar: {
+  customTabBar: {
     type: Boolean,
     default: true
   },
@@ -24,7 +24,7 @@ function getClipHeight() {
   let clip = 0
   const { safeAreaInsets } = uni.getWindowInfo()
 
-  if (props.hasTabBar) {
+  if (props.customTabBar) {
     clip += safeAreaInsets.top
     clip += 47
   }
