@@ -1,40 +1,19 @@
 <template>
-  <u-navbar title="个人中心" :autoBack="true"> </u-navbar>
-  <div :style="{ height: `calc(100vh - ${clipHeight}px)` }"></div>
+  <u-navbar back-text="返回" title="剑未配妥，出门已是江湖"></u-navbar>
+
+  <PageLayout ref="pageEl"> </PageLayout>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import PageLayout from '@components/pageLayout.vue'
+import { onReady } from '@dcloudio/uni-app'
 
-const clipHeight = ref<number>(0)
+const pageEl = ref()
 
-const props = defineProps({
-  hasNavBar: Boolean,
-  customTabBar: {
-    type: Boolean,
-    default: true
-  },
-  tabBarHeight: {
-    type: Number,
-    default: 44
-  }
+onReady(() => {
+  console.log(pageEl.value)
 })
-
-function getClipHeight() {
-  let clip = 0
-  const { safeAreaInsets } = uni.getWindowInfo()
-
-  if (props.customTabBar) {
-    clip += safeAreaInsets.top
-    clip += 47
-  }
-  if (safeAreaInsets.bottom) {
-    clip += safeAreaInsets.bottom
-  }
-  return clip
-}
-
-clipHeight.value = getClipHeight()
 </script>
 
 <style scoped></style>
