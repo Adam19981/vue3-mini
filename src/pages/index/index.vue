@@ -1,49 +1,40 @@
 <template>
-  <view class="index-page">
-    <Hello />
-    <text class="h2"> 查看其它页面↓ </text>
-    <view>
-      <navigator v-for="(v, idx) in pages" :key="idx" :url="v.url">{{
-        v.title
-      }}</navigator>
-    </view>
-  </view>
+  <u-navbar title="个人中心" :autoBack="true"> </u-navbar>
+  <div :style="{ height: `calc(100vh - ${clipHeight}px)` }"></div>
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue'
-import Hello from '@/components/hello/index.vue'
+import { ref } from 'vue'
 
-const pages = reactive([
-  {
-    title: 'Pinia Demo',
-    url: '/pages/pinia/index'
+const clipHeight = ref<number>(0)
+
+const props = defineProps({
+  hasNavBar: Boolean,
+  hasTabBar: {
+    type: Boolean,
+    default: true
   },
-  {
-    title: 'Axios Demo',
-    url: '/pages/axios/index'
-  },
-  {
-    title: 'uView Demo',
-    url: '/pages/uview/index'
-  },
-  {
-    title: '测试分包',
-    url: '/testSub/index/index'
+  tabBarHeight: {
+    type: Number,
+    default: 44
   }
-])
+})
+
+function getClipHeight() {
+  let clip = 0
+  const { safeAreaInsets } = uni.getWindowInfo()
+
+  if (props.hasTabBar) {
+    clip += safeAreaInsets.top
+    clip += 47
+  }
+  if (safeAreaInsets.bottom) {
+    clip += safeAreaInsets.bottom
+  }
+  return clip
+}
+
+clipHeight.value = getClipHeight()
 </script>
 
-<style scoped>
-.index-page {
-  font-style: normal;
-  text-align: center;
-}
-.h2 {
-  color: green;
-  font-size: 50rpx;
-}
-navigator {
-  color: #1e80ff;
-}
-</style>
+<style scoped></style>

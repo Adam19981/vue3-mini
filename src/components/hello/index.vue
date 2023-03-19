@@ -6,6 +6,8 @@
     </view>
     <view class="scss-title">这是scss 全局变量的样式</view>
     <view class="less-title">这是less 全局变量的样式</view>
+
+    <slot></slot>
   </view>
 </template>
 
