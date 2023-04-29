@@ -29,6 +29,7 @@
     "quotes": ["warn", "single"],
     "default-case": "off",
     "semi": ["warn", "never"],
+    "no-plusplus":"off",
     "no-console": "off",
     "import/no-unresolved": "off",
     "todo-ddl/diy": "warn",
