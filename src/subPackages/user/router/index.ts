@@ -2,13 +2,13 @@ import { Router } from '@/router/symbol'
 
 export const router: Array<Router> = [
   {
-    name: 'subPackages',
-    path: 'testSub',
+    mode: 'subPackages',
+    path: 'user/views',
     children: [
       {
-        path: 'index/index',
+        path: 'index',
         meta: {
-          title: '分包'
+          title: '用户'
         }
       }
     ]

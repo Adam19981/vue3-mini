@@ -23,13 +23,14 @@ const pageJson: PageJson = {
     }
   }
 }
-function createPages(children: RouterChildren[]): Page[] {
+function createPages(router: Router): Page[] {
   const pages: Page[] = []
-  children.forEach((item: RouterChildren) => {
+  router.children?.forEach((item: RouterChildren) => {
     const page: Page = {
-      path: `pages/${item.path}`,
+      path: `pages/${router.path}/${item.path}`,
       style: {
-        navigationBarTitleText: item.meta?.title ?? ''
+        navigationBarTitleText: item.meta?.title ?? '',
+        navigationStyle: item.meta?.header ?? 'custom'
       }
     }
     pages.push(page)
@@ -46,7 +47,8 @@ function createSubPages(router: Router): SubPackage {
     const subPackage: Page = {
       path: item.path,
       style: {
-        navigationBarTitleText: item.meta?.title ?? ''
+        navigationBarTitleText: item.meta?.title ?? '',
+        navigationStyle: item.meta?.header ?? 'custom'
       }
     }
     subPackages.pages?.push(subPackage)
@@ -56,8 +58,8 @@ function createSubPages(router: Router): SubPackage {
 
 router.forEach((item: Router) => {
   if (item.children && item.children.length) {
-    if (item.name === 'pages') {
-      pageJson.pages = pageJson.pages.concat(createPages(item.children))
+    if (item.mode === 'pages') {
+      pageJson.pages = pageJson.pages.concat(createPages(item))
     } else {
       pageJson.subPackages.push(createSubPages(item))
     }

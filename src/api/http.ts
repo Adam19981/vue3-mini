@@ -7,7 +7,6 @@ function getWXHost(): string {
   // //envVersion: 'trial',          //体验版
   // //envVersion: 'release',     //正式版
   const { envVersion } = uni.getAccountInfoSync().miniProgram
-  console.log(envVersion)
   if (envVersion === 'release') {
     return 'https://xxxx.com2222'
   }
@@ -19,7 +18,7 @@ const instance = axios.create({
   // 小程序APP里需写完整路径，如 https://service-rbji0bev-1256505457.cd.apigw.tencentcs.com/release
   // 可使用条件编译,详见 https://uniapp.dcloud.io/tutorial/platform.html#preprocessor
   // #ifdef H5
-  baseURL: 'https://service-rbji0bev-1256505457.cd.apigw.tencentcs.com/release',
+  // baseURL: 'https://service-rbji0bev-1256505457.cd.apigw.tencentcs.com/release',
   // #endif
 
   // #ifdef MP-WEIXIN
@@ -29,7 +28,7 @@ const instance = axios.create({
   // #ifndef H5
   // @ts-ignore
 
-  baseURL: 'https://service-rbji0bev-1256505457.cd.apigw.tencentcs.com/release',
+  // baseURL: 'https://service-rbji0bev-1256505457.cd.apigw.tencentcs.com/release',
   // #endif
   adapter(config) {
     console.log('request adapter ↓↓')

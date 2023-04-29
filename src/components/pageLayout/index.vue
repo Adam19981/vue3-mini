@@ -1,5 +1,7 @@
 <template>
-  <div :style="{ height: `calc(100vh - ${clipHeight}px)` }">
+  <div
+    :style="{ height: `calc(100vh - ${clipHeight}px)`, background: '#F3F3F3' }"
+  >
     <slot></slot>
   </div>
 </template>
@@ -36,10 +38,6 @@ function getClipHeight() {
 }
 
 clipHeight.value = getClipHeight()
-
-defineExpose({
-  safeAreaInsets
-})
 </script>
 
 <style scoped></style>

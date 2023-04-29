@@ -4,7 +4,7 @@ export interface RouterChildren {
 }
 
 export interface Router {
-  name: 'pages' | 'subPackages'
+  mode: 'pages' | 'subPackages'
   path: string
   children?: Array<RouterChildren>
 }
