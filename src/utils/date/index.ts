@@ -12,8 +12,12 @@ export interface DateInfo {
   date: string
 }
 
-export function getNowDateInfo(): DateInfo {
-  const date = new Date()
+export function getDateTimeStampZero() {
+  return new Date(new Date().toLocaleDateString()).getTime()
+}
+
+export function getNowDateInfo(timeStamp?: number): DateInfo {
+  const date = timeStamp ? new Date(timeStamp) : new Date()
   const req = {
     year: date.getFullYear(),
     month: date.getMonth() + 1,
@@ -38,10 +42,10 @@ function getDateByTimeStamp(timeStamp: number) {
 
 export function getWeek(param: DateInfo): CalendarItem[] {
   const nowDate = new Date(param.date)
-  const nowTimeStamp = Date.now()
+  const nowTimeStamp = nowDate.getTime()
   const day = nowDate.getDay()
   const oneDayTimeStamp = 24 * 60 * 60 * 1000
-  const startTimeStamp = nowTimeStamp - (day ? day - 1 : 0) * oneDayTimeStamp // 本周第一天时间戳
+  const startTimeStamp = nowTimeStamp - (day ? day - 1 : 6) * oneDayTimeStamp // 本周第一天时间戳
   const list: CalendarItem[] = []
 
   for (let i = 0; i < 7; i++) {
