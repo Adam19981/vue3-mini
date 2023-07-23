@@ -97,6 +97,9 @@ defineProps({
   modelValue: Boolean
 })
 
+// const accountInfo = uni.getAccountInfoSync()
+// console.log(accountInfo)
+
 const weeks = ['一', '二', '三', '四', '五', '六', '日']
 
 const emit = defineEmits(['update:modelValue', 'clickDate'])
