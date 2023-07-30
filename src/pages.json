@@ -8,20 +8,6 @@
 			}
 		}
 	],
-	"subPackages": [
-		{
-			"root": "user/views",
-			"pages": [
-				{
-					"path": "index",
-					"style": {
-						"navigationBarTitleText": "用户",
-						"navigationStyle": "custom"
-					}
-				}
-			]
-		}
-	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
